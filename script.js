@@ -4,6 +4,7 @@ const exchange = document.querySelector('.exchange');
 const button = document.querySelector('button');
 const select = document.querySelectorAll('select');
 const icons = document.querySelectorAll('.row .fas');
+let speechSynthesisUtterance;
 select.forEach((tag,id) => {
      for(let country_code in countries){
           let selected = id === 0 ? country_code == 'en-GB' ? 'selected' : "" : country_code == 'hi-IN' ? 'selected' : "";
@@ -52,10 +53,10 @@ icons.forEach(icon => {
                }
           }else{
                if(target.id == 'from'){
-                    let speechSynthesisUtterance = new SpeechSynthesisUtterance(fromText.value);
+                    speechSynthesisUtterance = new SpeechSynthesisUtterance(fromText.value);
                     speechSynthesisUtterance.lang = select[0].value;
                }else{
-                    let speechSynthesisUtterance = new SpeechSynthesisUtterance(toText.value);
+                    speechSynthesisUtterance = new SpeechSynthesisUtterance(toText.value);
                     speechSynthesisUtterance.lang = select[1].value;
                }
                speechSynthesis.speak(speechSynthesisUtterance);
